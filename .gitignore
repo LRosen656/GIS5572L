@@ -1,0 +1,15 @@
+*.aprx
+*.shp
+*.tif*
+*.gdb
+*.sde
+*.atbx
+*.aprx
+*Index/*
+*Index\*
+*.ipynb_checkpoints
+*GpMessages/*
+*GpMessages\*
+*.ImportLog/*
+*.ImportLog\*
+
