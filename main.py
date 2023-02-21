@@ -19,6 +19,7 @@ def get_polygon():
   cursor.execute("SELECT ST_AsGeoJSON(geom) FROM table_poly;")
   result = cursor.fetchall()
   conn.close()
+  return result[0][0]
 
 if __name__ == "__main__":
     app.run(debug=True, host="0.0.0.0", port=int(os.environ.get("PORT", 8080)))
