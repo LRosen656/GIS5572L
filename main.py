@@ -16,12 +16,12 @@ def hello_world():
 def get_polygon():
   conn = psycopg2.connect(host = '34.171.19.177', database = 'lab1', user = 'postgres', password = 'starman1')
   cursor = conn.cursor()
-  query = f'''SELECT json_build_object(
+  query = f''' SELECT jsonb_build_object(
     'type',       'Feature',
-    'geometry',   ST_AsGeoJSON(geom)::json
- )
- FROM table_poly;'''
-  cursor.execute("SELECT ST_AsGeoJSON(geom) FROM table_poly;")
+    'geometry',   ST_AsGeoJSON(geom)::jsonb,
+    'properties', to_jsonb(row) - 'gid' - 'geom'
+) FROM (SELECT * FROM table_poly) row;'''
+  cursor.execute(query)
   result = cursor.fetchall()
   conn.close()
   return result[0][0]
